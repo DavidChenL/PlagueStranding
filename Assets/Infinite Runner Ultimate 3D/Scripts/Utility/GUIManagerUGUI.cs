@@ -34,7 +34,6 @@ public class GUIManagerUGUI : MonoBehaviour {
 	public Text HighScoreCoin;
 	public Text HighScoreScore;
 	public Text HighScoreDistance;
-    public StoreManager Store;
     public GameObject RevivalButton; //This GameObject is deacativated if revival is not bought in store.
     public Text RevivalText;//The text that displays number of revivals available
 
@@ -78,20 +77,6 @@ public class GUIManagerUGUI : MonoBehaviour {
 		Application.Quit();
 		}
 	void Update () {
-        if (Store)   //Sample store codes to check whether item is bought and if so carrying out desired actions
-        {
-            if (Store.ExhaustibleUnitsBought(100) > 0)//Check if revival is bought in store. 100 is the item id for revival in store. It is an exhaustible item
-            {
-                RevivalButton.SetActive(true); //If bought activate revival button. Revival buttton is shown when player dies
-                RevivalText.text = Store.ExhaustibleUnitsBought(100).ToString() + " revivals available";
-
-
-            }
-            else
-            {
-                RevivalButton.SetActive(false);
-            }
-        }
 		if (startPlayTransition == true) {//Start Play transition animation
 						if (GameStarted == false) {
 								MainMenuCamera.transform.parent = null;
