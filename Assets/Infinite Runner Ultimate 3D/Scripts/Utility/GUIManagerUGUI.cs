@@ -34,8 +34,6 @@ public class GUIManagerUGUI : MonoBehaviour {
 	public Text HighScoreCoin;
 	public Text HighScoreScore;
 	public Text HighScoreDistance;
-    public GameObject RevivalButton; //This GameObject is deacativated if revival is not bought in store.
-    public Text RevivalText;//The text that displays number of revivals available
 
 	void Start () {
 		startPlayTransition = false;
@@ -103,29 +101,9 @@ public class GUIManagerUGUI : MonoBehaviour {
 				p.TrackType=PlayerControls.TrackTypeEnum.FreeHorizontalMovement;
 			PlayerPrefs.SetInt ("ControlType", 0);
 			}
-		//Graphics changing code
-		if (Fog.isOn == true) {
-						RenderSettings.fog = true;
-						PlayerPrefs.SetInt ("Fog", 1);
-				} else {
-			RenderSettings.fog=false;
-			PlayerPrefs.SetInt("Fog",0);
-		}
 
 		PlayerPrefs.SetFloat("Graphics",GraphicsSlider.value);
-		if(GraphicsSlider.value==0)
-			QualitySettings.SetQualityLevel(1);
-		
-		else if(GraphicsSlider.value==1)
-			QualitySettings.SetQualityLevel(2);
-		else if(GraphicsSlider.value==2)
-			QualitySettings.SetQualityLevel(3);
-		else if(GraphicsSlider.value==3)
-			QualitySettings.SetQualityLevel(4);
-		else if(GraphicsSlider.value==4)
-			QualitySettings.SetQualityLevel(5);
-		else
-			QualitySettings.SetQualityLevel(6);
+		QualitySettings.SetQualityLevel(6);
 		//end Graphics changing code
 		Music.volume=MusicSlider.value;
 		PlayerPrefs.SetFloat("Music",MusicSlider.value);
@@ -155,30 +133,8 @@ public class GUIManagerUGUI : MonoBehaviour {
 		}
 		float value=PlayerPrefs.GetFloat("Graphics");
 		GraphicsSlider.value = value;
-		if(value==0)
-			QualitySettings.SetQualityLevel(1);
-		
-		else if(value==1)
-			QualitySettings.SetQualityLevel(2);
-		else if(value==2)
-			QualitySettings.SetQualityLevel(3);
-		else if(value==3)
-			QualitySettings.SetQualityLevel(4);
-		else if(value==4)
-			QualitySettings.SetQualityLevel(5);
-		else
-			QualitySettings.SetQualityLevel(6);
+		QualitySettings.SetQualityLevel(6);
 	
-	   if(PlayerPrefs.GetInt("Fog")==1){
-			RenderSettings.fog=true;
-			Fog.isOn=true;
-
-		}
-		else{
-			RenderSettings.fog=false;
-			Fog.isOn=false;
-
-		}
 	
 		Music.volume=PlayerPrefs.GetFloat("Music");
 		MusicSlider.value=Music.volume;
@@ -188,7 +144,6 @@ public class GUIManagerUGUI : MonoBehaviour {
 	void GamePreferencesCreate(){ //save default Game Preferences. Change default preferences from here
 		PlayerPrefs.SetFloat("Graphics",0.4f);
 		PlayerPrefs.SetFloat("Music",1f);
-		PlayerPrefs.SetInt("Fog",0);
 		PlayerPrefs.SetInt("Effects",0);
 		PlayerPrefs.SetFloat("FirstTime",1);
 		PlayerPrefs.SetInt ("ControlType", 0);//0 stands for free movement and 1 stands for swipe based similar to subway surfer
