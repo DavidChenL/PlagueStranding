@@ -1,2 +1,2 @@
 # Plague Stranding
-A 3D Unity Game, under active development.
+A 3D Unity game, under active development.
